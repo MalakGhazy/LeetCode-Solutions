@@ -13,8 +13,10 @@ public:
     bool isPalindrome(ListNode* head) {
         if(head == nullptr || head->next == nullptr)
         {
-            return true;
+            return true;// A single node or empty list is always a palindrome
         }
+
+        // Step 1: Create a copy of the original list
         ListNode * og = head;
         ListNode* copy = nullptr;
         ListNode* copyTail = nullptr;
@@ -30,7 +32,8 @@ public:
             }
             og = og->next;
         }
-
+        
+        // Step 2: Reverse the copied list
         ListNode * current = copy;
         ListNode * rev = nullptr;
         while(current != nullptr)
@@ -40,7 +43,8 @@ public:
             rev=current;
             current= nextNode;
         }
-        og = head;
+        // Step 3: Compare the original list with the reversed copy
+        og = head;  // Reset `og` to the original head
         while(og!=nullptr && rev!=nullptr)
         {
             if(og->val != rev->val)
