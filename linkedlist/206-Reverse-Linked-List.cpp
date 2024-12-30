@@ -19,10 +19,10 @@ public:
         ListNode*rev = nullptr;
         while(current!= nullptr)
         {
-            ListNode *temp = current;
-            current = current->next;
-            temp->next = rev;
-            rev = temp;
+            ListNode *nextNode = current->next; //save the nextNode
+            current->next = rev;  // reverse the current Node's pointer
+            rev = current;       // Move the rev pointer to the current node
+            current = nextNode; // Move current Node to the next Node
         }        
         return rev;
     }
@@ -32,24 +32,23 @@ public:
 //rev: nullptr
 
 //First Iteration:
-//temp: 1 -> 2 -> 3 -> 4 -> 5 -> nullptr
+
+//Step 1: Save the next node:
+//nextNode = current->next = 2 -> 3 -> 4 -> 5 -> nullptr
+
+//Step 2: Reverse the pointer of the current node:
+//current->next = rev = nullptr
+//Updated Current
+//1 -> nullptr
+
+//Step 3: Move the rev pointer:
+//rev = current = 1 -> nullptr
+
+//Step 4: Move the current pointer:
+//current = nextNode = 2 -> 3 -> 4 -> 5 -> nullptr
+
+//After First Insertion
+//nextNode: 2 -> 3 -> 4 -> 5 -> nullptr
 //current: 2 -> 3 -> 4 -> 5 -> nullptr
 //rev: 1 -> nullptr
-
-//Second Iteration:
-//temp: 2 -> 3 -> 4 -> 5 -> nullptr
-//current: 3 -> 4 -> 5 -> nullptr
-//rev: 2 -> 1 -> nullptr
-
-//Final State:
-//current: nullptr
-//rev: 5 -> 4 -> 3 -> 2 -> 1 -> nullptr
-
-//Output:
-//[5, 4, 3, 2, 1]
-
-
-
-
-
 
